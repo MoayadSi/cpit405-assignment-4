@@ -13,10 +13,10 @@
 
 </div>
 
-<form>
+<div>
 <button id="searchBtn" onclick="doClick()"> Search
 </button>
-</form>
+</div>
 
 <p>Sort by:</p>
 
@@ -47,6 +47,7 @@ logoimg.setAttribute("alt", "Logo");
 firstSpan.appendChild(logoimg);
 
 var searchbar = document.createElement("input");
+searchbar.id="search";
 firstSpan.appendChild(searchbar);
 
 var homeButton = document.createElement("button");
@@ -217,7 +218,7 @@ function changeFunction(){
 
 
 function doClick() {
-  var searchTerm = document.getElementById("searchbar").value;
+  var searchTerm = document.getElementById("search").value;
   var xhttp = new XMLHttpRequest();
   // When the request is successful, finished, and response is ready, execute these function
   xhttp.onreadystatechange = function() {
