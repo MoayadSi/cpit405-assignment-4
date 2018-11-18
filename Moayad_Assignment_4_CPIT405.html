@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Pinterest</title>
+<link rel="icon" href="https://s.pinimg.com/webapp/style/images/logo_trans_144x144-642179a1.png">
+<link rel="stylesheet" type="text/css" href="MyCSSAssignment4.css">
+</head>
+
+<body>
+
+<div id="start">
+
+</div>
+
+<form>
+<button id="searchBtn" onclick="doClick()"> Search
+</button>
+</form>
+
+<p>Sort by:</p>
+
+<select id="MySelect" onchange="changeFunction()">
+  <option>Filter</option>
+  <option value="L">Sort by least likes</option>
+  <option value="OD">Sort by oldest first</option>
+  <option value="ND">Sort by newest first</option>
+</select>
+
+<div id="div2">
+
+</div>
+
+<div id="searchResult">
+
+</div>
+
+<script>
+var divElem = document.getElementById("start");
+
+var firstSpan = document.createElement("span");
+divElem.appendChild(firstSpan);
+
+var logoimg = document.createElement("img");
+logoimg.setAttribute("src", "https://i.imgur.com/cuIF3WC.png");
+logoimg.setAttribute("alt", "Logo");
+firstSpan.appendChild(logoimg);
+
+var searchbar = document.createElement("input");
+firstSpan.appendChild(searchbar);
+
+var homeButton = document.createElement("button");
+var homeBT = document.createTextNode("Home");
+homeButton.appendChild(homeBT);
+firstSpan.appendChild(homeButton);
+
+var followingButton = document.createElement("button");
+var followingBT = document.createTextNode("Following");
+followingButton.appendChild(followingBT);
+firstSpan.appendChild(followingButton);
+
+var usernameButton = document.createElement("button");
+var userBT = document.createTextNode("Username123");
+usernameButton.appendChild(userBT);
+firstSpan.appendChild(usernameButton);
+
+var messageButton = document.createElement("button");
+var messageBT = document.createTextNode("Messages");
+messageButton.appendChild(messageBT);
+firstSpan.appendChild(messageButton);
+
+var notifacationButton = document.createElement("button");
+var notificationBT = document.createTextNode("Notification");
+notifacationButton.appendChild(notificationBT);
+firstSpan.appendChild(notifacationButton);
+
+var optionButton = document.createElement("button");
+var optionBT = document.createTextNode("Options");
+optionButton.appendChild(optionBT);
+firstSpan.appendChild(optionButton);
+
+var allImages =  [
+    {
+        name: "Cat1",
+        likes: 30,
+        dateU: "26 January 2018",
+        src: "https://i.pinimg.com/originals/32/ed/dc/32eddc1fcfccb291316e0b4d755009be.jpg"
+    },
+    {
+        name: "Cat2",
+        likes: 55,
+        dateU: '24 March 2018',
+        src: "https://i.pinimg.com/originals/0e/da/de/0edade3b594d85819eeb707beb9f0dd2.jpg"
+    },
+    {
+        name: "Cat3",
+        likes: 12,
+        dateU: "16 March 2018",
+        src: "https://pbs.twimg.com/profile_images/945231566564876289/zsdKD9sr_400x400.jpg"
+    },
+    {
+        name: "Cat4",
+        likes: 8,
+        dateU: "11 May 2018",
+        src: "http://catz4eva.weebly.com/uploads/4/9/0/8/4908382/6376313.jpg"
+    },
+    {
+        name: "Rabbit1",
+        likes: 84,
+        dateU: "3 January 2018",
+        src: "https://i.pinimg.com/originals/1b/41/45/1b4145e837c8912ee9d54f69e4d9c08e.jpg"
+    },
+    {
+        name: "Rabbit2",
+        likes: 70,
+        dateU: "4 March 2018",
+        src: "http://storage-cube.quebecormedia.com/v1/cl_prod/canadian_living/66564fe8-00b1-4614-90bf-46ecb6bf9da1/bunny2501332248947.jpg"
+    },
+    {
+        name: "Rabbit3",
+        likes: 16,
+        dateU: "22 June 2018",
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Sylvilagus_floridanus.jpg/250px-Sylvilagus_floridanus.jpg"
+    },
+    {
+        name: "Rabbit4",
+        likes: 66,
+        dateU: "11 July 2018",
+        src: "https://s3-media4.fl.yelpcdn.com/bphoto/Jkfy2dJO-06Zt0bBU6CWRA/ls.jpg"
+    }
+]
+
+ var divElem2 = document.getElementById("div2");
+ 
+ var imgElem = document.createElement("img");
+
+ var imgElem2 = document.createElement("img");
+
+ var imgElem3 = document.createElement("img");
+ 
+ var imgElem4 = document.createElement("img");
+ 
+ var imgElem5 = document.createElement("img");
+ 
+ var imgElem6 = document.createElement("img");
+ 
+ var imgElem7 = document.createElement("img");
+ 
+ var imgElem8 = document.createElement("img");
+
+ 
+function viewPics(){
+    imgElem.src = allImages[0].src;
+    imgElem2.src = allImages[1].src;
+    imgElem3.src = allImages[2].src;
+    imgElem4.src = allImages[3].src;
+	imgElem5.src = allImages[4].src;
+	imgElem6.src = allImages[5].src;
+	imgElem7.src = allImages[6].src;
+    imgElem8.src = allImages[7].src;
+	
+	divElem2.appendChild(imgElem);
+	divElem2.appendChild(imgElem2);
+	divElem2.appendChild(imgElem3);
+	divElem2.appendChild(imgElem4);
+	divElem2.appendChild(imgElem5);
+	divElem2.appendChild(imgElem6);
+	divElem2.appendChild(imgElem7);
+	divElem2.appendChild(imgElem8);
+}
+
+
+	function sortByLikes() {
+	allImages.sort(function (a, b) {
+	return a.likes - b.likes;
+	});
+	viewPics();
+	}
+
+	
+	function sortByDate(){
+	allImages.sort(function(a, b) {
+    var dateA = new Date(a.dateU), dateB = new Date(b.dateU);
+    return dateA - dateB;
+	});
+	viewPics();
+	}
+	
+	
+	function sortByDateNew(){
+    allImages.sort(function(a, b) {
+    var dateA = new Date(a.dateU), dateB = new Date(b.dateU);
+    return dateB - dateA;
+	});
+	viewPics();
+	}
+	
+
+function changeFunction(){
+	var x = document.getElementById("MySelect").value;
+	
+	if(x == "L"){
+	sortByLikes()
+	}
+
+	else if (x == "OD"){
+	sortByDate()
+	}
+	
+	else if (x == "ND"){
+	sortByDateNew()
+	}
+	else{
+	viewPics();
+	}
+}
+
+
+function doClick() {
+  var searchTerm = document.getElementById("searchbar").value;
+  var xhttp = new XMLHttpRequest();
+  // When the request is successful, finished, and response is ready, execute these function
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var resObj = JSON.parse(xhttp.responseText);
+	  var item;
+      for (item of resObj.data) {
+
+        document.getElementById("searchResult").innerHTML +=
+          '<div><img src="' + item.link + '" alt="' + item.title + '"/></div>' +
+          '<p>' + item.title + '</p>'
+        '<p>Favorite: ' + item.favorite_count;
+      }
+    }
+  }
+  // Send an asynchronous HTTP GET request to the given end point (url)
+  xhttp.open("GET", "https://api.imgur.com/3/gallery/search/top/all/1?q=" + searchTerm, true);
+  xhttp.setRequestHeader("Authorization", "Client-ID 41c3a67e15e9d4d")
+  xhttp.send();
+}
+
+
+</script>
+</body>
+
+</html>
